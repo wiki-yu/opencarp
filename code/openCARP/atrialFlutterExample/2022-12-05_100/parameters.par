@@ -1,0 +1,96 @@
+# CARP GIT commit hash: fd8419d5c7649060c9447adf2dbee1723a8af9db
+# dependency hashes:    
+
+# /usr/local/bin/openCARP +F atrialFlutter.par -ellip_use_pt 0 -parab_use_pt 0 -parab_options_file /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/ilu_cg_opts
+# -ellip_options_file /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/gamg_cg_opts
+# -num_phys_regions 2 -phys_region[0].name Intracellular domain -phys_region[0].ptype 0 -phys_region[0].num_IDs 1 -phys_region[0].ID[0]
+# 1 -phys_region[1].name Extracellular domain -phys_region[1].ptype 1 -phys_region[1].num_IDs 1 -phys_region[1].ID[0] 1 -simID 2022-12-05_100
+# -meshname /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/atria -tend 100.0 -num_gregions 1 -gregion[0].name myocardium
+# -gregion[0].num_IDs 1 -gregion[0].ID 1 -gregion[0].g_el 0.625 -gregion[0].g_et 0.625 -gregion[0].g_en 0.625 -gregion[0].g_il 0.174
+# -gregion[0].g_it 0.174 -gregion[0].g_in 0.174 -gregion[0].g_mult 0.005 -num_stim 2 -stimulus[0].start 0.0 -stimulus[0].vtx_file
+# /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/stimFile.vtk -stimulus[0].npls 1 -stimulus[0].strength 4000.0
+# -stimulus[0].duration 1.0 -stimulus[0].stimtype 0 -stimulus[1].start 25.0 -stimulus[1].vtx_file /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/stimFile.vtk
+# -stimulus[1].npls 1 -stimulus[1].strength 5000.0 -stimulus[1].duration 1.0 -stimulus[1].stimtype 0 -phie_rec_ptf /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/atria
+# 
+
+#=======================================================>>
+## atrialFlutter.par ##
+# ionic model setup
+num_imp_regions = 1 
+imp_region[0].im = Nygren	# select ionic model
+# simulation setup
+bidomain    =   1 	# run bidomain
+spacedt     =   10.	# output every 0.01 ms
+timedt      =   10.	# update progess on commandline every ms
+parab_solve =   1	# use Crank-Nicolson to solve the parabolic problem
+cg_maxit_ellip = 1000
+
+##END of atrialFlutter.par
+#=======================================================<<
+
+ellip_use_pt                            = 0
+parab_use_pt                            = 0
+parab_options_file = /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/ilu_cg_opts
+#=======================================================>>
+## /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/ilu_cg_opts ##
+#-pc_type bjacobi
+#-sub_pc_type ilu
+#-ksp_type cg
+##-ksp_view
+
+##END of /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/ilu_cg_opts
+#=======================================================<<
+
+ellip_options_file = /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/gamg_cg_opts
+#=======================================================>>
+## /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/gamg_cg_opts ##
+#-ksp_type cg
+#-pc_type gamg
+#-pc_gamg_type agg
+#-pc_gamg_sym_graph 1
+#-pc_gamg_square_graph 5
+#-pc_gamg_agg_nsmooths 1
+#-pc_gamg_threshold 0.0
+#-pc_mg_cycles v
+#-options_left
+
+##END of /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/carputils/resources/petsc_options/gamg_cg_opts
+#=======================================================<<
+
+num_phys_regions                        = 2
+phys_region[0].name                     = Intracellular domain
+phys_region[0].ptype                    = 0
+phys_region[0].num_IDs                  = 1
+phys_region[0].ID[0]                    = 1
+phys_region[1].name                     = Extracellular domain
+phys_region[1].ptype                    = 1
+phys_region[1].num_IDs                  = 1
+phys_region[1].ID[0]                    = 1
+simID                                   = 2022-12-05_100
+meshname                                = /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/atria
+tend                                    = 100.0
+num_gregions                            = 1
+gregion[0].name                         = myocardium
+gregion[0].num_IDs                      = 1
+gregion[0].ID                           = 1
+gregion[0].g_el                         = 0.625
+gregion[0].g_et                         = 0.625
+gregion[0].g_en                         = 0.625
+gregion[0].g_il                         = 0.174
+gregion[0].g_it                         = 0.174
+gregion[0].g_in                         = 0.174
+gregion[0].g_mult                       = 0.005
+num_stim                                = 2
+stimulus[0].start                       = 0.0
+stimulus[0].vtx_file                    = /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/stimFile.vtk
+stimulus[0].npls                        = 1
+stimulus[0].strength                    = 4000.0
+stimulus[0].duration                    = 1.0
+stimulus[0].stimtype                    = 0
+stimulus[1].start                       = 25.0
+stimulus[1].vtx_file                    = /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/stimFile.vtk
+stimulus[1].npls                        = 1
+stimulus[1].strength                    = 5000.0
+stimulus[1].duration                    = 1.0
+stimulus[1].stimtype                    = 0
+phie_rec_ptf                            = /DockerBridge/SignalAlgos_data/openCarp/simpleAtriaExample/meshes/atria

@@ -1,0 +1,9 @@
+# ionic model setup
+num_imp_regions = 1 
+imp_region[0].im = LuoRudy91	# select ionic model
+# simulation setup
+bidomain    =   1 	# run monodomain
+spacedt     =   .01	# output every 0.01 ms
+timedt      =   1.	# update progess on commandline every ms
+parab_solve =   1	# use Crank-Nicolson to solve the parabolic problem
+cg_maxit_ellip = 1000
